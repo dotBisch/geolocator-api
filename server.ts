@@ -55,8 +55,11 @@ app.get('/api/history', async (req, res) => {
   res.json(data);
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+// Only start the server if running directly (not when imported by Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+}
 
 export default app;
